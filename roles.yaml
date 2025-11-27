@@ -1,14 +1,20 @@
 apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: viewer-cluster
+rules:
+  # Namespaces (cluster-wide)
+  - apiGroups: [""]
+    resources: ["namespaces", "namespaces/status"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: viewer
   namespace: paul
 rules:
-  # Namespaces
-  - apiGroups: [""]
-    resources: ["namespaces", "namespaces/status"]
-    verbs: ["get", "list", "watch"]
-
   # Pods
   - apiGroups: [""]
     resources: ["pods", "pods/log", "pods/status"]
