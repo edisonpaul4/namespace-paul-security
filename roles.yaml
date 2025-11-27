@@ -4,6 +4,11 @@ metadata:
   name: viewer
   namespace: paul
 rules:
+  # Namespaces
+  - apiGroups: [""]
+    resources: ["namespaces", "namespaces/status"]
+    verbs: ["get", "list", "watch"]
+
   # Pods
   - apiGroups: [""]
     resources: ["pods", "pods/log", "pods/status"]
